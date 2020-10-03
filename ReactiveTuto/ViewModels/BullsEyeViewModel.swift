@@ -26,7 +26,7 @@ class BullsEyeViewModel: ObservableObject {
             case .failure(let error):
                 print(error)
             }
-        }) { (values) in
+        }) { (values: [Int]) in
             self.rTarget = Double(values[0]) / 255
             self.gTarget = Double(values[1]) / 255
             self.bTarget = Double(values[2]) / 255

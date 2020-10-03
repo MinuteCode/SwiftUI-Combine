@@ -31,7 +31,7 @@ enum NumberApiCombine {
         }
     }
     
-    func publish() -> AnyPublisher<[Int], Error> {
+    func publish<T: Decodable>() -> AnyPublisher<T, Error> {
         return session.dataTaskPublisher(for: URLRequest(url: path))
             .tryMap { (data, response) -> Data in
                 guard
@@ -42,7 +42,7 @@ enum NumberApiCombine {
                     
                 return data
             }
-            .decode(type: [Int].self, decoder: JSONDecoder())
+            .decode(type: T.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
 }
