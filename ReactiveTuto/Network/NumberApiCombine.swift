@@ -24,6 +24,8 @@ enum NumberApiCombine {
     var path: URL {
         switch self {
         case .randomNumber(let min, let max, let count):
+            ///TODO : Refactor this !
+            ///See why `URL(string: "/random?min=\(min)&max=\(max)&count=\(count ?? 1)", relativeTo: baseUrl)!` strips "/api/v1.0" from the url
             let url = URL(string: "http://www.randomnumberapi.com/api/v1.0/random?min=\(min)&max=\(max)&count=\(count ?? 1)")!
             return url
         }
