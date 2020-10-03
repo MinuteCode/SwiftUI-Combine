@@ -33,4 +33,14 @@ class BullsEyeViewModel: ObservableObject {
         }
         .store(in: &cancellables)
     }
+    
+    func cancel(_ cancellable: AnyCancellable) {
+        cancellable.cancel()
+    }
+    
+    func cancelAll() {
+        cancellables.forEach { (cancellable) in
+            cancel(cancellable)
+        }
+    }
 }
